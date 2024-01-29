@@ -1,5 +1,6 @@
 FROM node:lts
 
+# WORKDIR /$CONTAINER_FOLDER
 WORKDIR /usr/src/app
 
 COPY package.json ./
