@@ -15,7 +15,10 @@ mongoose
     .connect(
         'mongodb://mongo:27017/app',
         // mongo config when working with docker
-        { useNewUrlParser: true }
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        }
     )
     .then(() => console.log('MongoDB Connected'))
     .catch((err) => console.log('Unable to connect to MongoDB', err));

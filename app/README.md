@@ -18,3 +18,16 @@ volumes: ['./:/usr/src/app']
 # To re-build
 docker-compose build
 ```
+
+## Test MongoDB Connection
+
+You can test the MongoDB connection using the following command:
+
+```bash
+docker exec -it docker-app-1 node /usr/src/app/test-mongo-connection.js
+```
+
+Replace `docker-app-1` with the actual container name, which you can find using:
+```bash
+docker ps -a
+```
