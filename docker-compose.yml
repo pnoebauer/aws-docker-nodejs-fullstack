@@ -12,11 +12,9 @@ services:
     # LOCAL_FOLDER = ./app
     # CONTAINER_FOLDER = /usr/src/app
     volumes: 
-      - ./app:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./app:/usr/src/app # bind mount
+      - /usr/src/app/node_modules # named volume
     restart: always
-    # depends_on:
-    #   - mongo
     depends_on:
       mongo:
         condition: service_healthy
