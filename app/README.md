@@ -32,11 +32,11 @@ docker run -it IMAGE_ID bash
 docker run -it IMAGE_ID nodemon
 
 # build image and tag it
-docker build -t pnoebauer/nodejs-fullstack-app:1.0 ./app
+docker build --platform linux/amd64 -t pnoebauer/nodejs-fullstack-app:1.2 ./app
 
 # push to docker hub
 docker login
-docker push pnoebauer/nodejs-fullstack-app
+docker push pnoebauer/nodejs-fullstack-app:1.0
 
 ```
 
@@ -87,4 +87,23 @@ docker container prune
 docker volume prune
 
 # Cleanup everything
-docker volume prune
+docker system prune
+
+```
+
+# Play with docker
+https://labs.play-with-docker.com
+
+```bash
+# create volume
+docker volume create myremotevolume
+
+# check volumes
+docker volume ls
+
+# drag docker compose into editor
+docker-compose pull
+
+# run
+docker-compose up
+```

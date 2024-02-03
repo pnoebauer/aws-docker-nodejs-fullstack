@@ -1,22 +1,13 @@
 FROM node:lts
 
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH=$PATH:/home/node/.npm-global/bin
-
-RUN npm install -g nodemon
-
-# WORKDIR /$CONTAINER_FOLDER
 WORKDIR /usr/src/app
 
 COPY package.json ./
 
-# npm install only runs if package.json changes
-# otherwise the cached node_modules are used
 RUN npm install
 
 COPY . .
 
 EXPOSE 3000
 
-# CMD ["npm", "start"]
-CMD ["npm", "run", "start:watch"]
+CMD ["npm", "start"]

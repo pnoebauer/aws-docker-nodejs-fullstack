@@ -2,8 +2,7 @@ version: '3'
 
 services: 
   app:
-    # build: ./app
-    image: pnoebauer/nodejs-fullstack-app:1.2
+    build: ./app
     ports:
       - "3000:3000"
     # volumes:
@@ -13,16 +12,17 @@ services:
     # LOCAL_FOLDER = ./app
     # CONTAINER_FOLDER = /usr/src/app
     volumes: 
-      # - ./app:/usr/src/app # bind mount
-      # - /usr/src/app/node_modules # named volume
-      - myremotevolume:/usr/src/app # bind mount
+      - ./app:/usr/src/app # bind mount
+      - /usr/src/app/node_modules # named volume
     restart: always
+    depends_on:
+      mongo:
+        condition: service_healthy
     links: 
       - mongo
   mongo:
     image: mongo
     ports: 
       - "27017:27017"
-
-volumes:
-  myremotevolume:
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
